@@ -1,31 +1,29 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using _Assets.Scripts.ScriptableObjectsScripts;
 using UnityEditor;
-using UnityEngine;
 
 namespace _Assets.Scripts.WordsList
 {
     public abstract class WordsListInitializer
     {
-        //TODO: compressFindAssetMethodsIntoOneSimpler
-        
-        private const string TXT_FILE_NAME = "WordsList";
-        private const string WORDS_LIST_SO_TYPE = "letters t:WordsListSO";
+        private const string WORDS_TXT_FILE_NAME = "WordsList";
+        private const string WORDS_TXT_FILE_TYPE = "t:TextAsset";
+        private const string WORDS_TXT_FILE_EXTENSION = "txt";
+        private const string WORDS_LIST_SO_NAME = "letters";
+        private const string WORDS_LIST_SO_TYPE = "t:WordsListSO";
+        private const string WORDS_LIST_SO_EXTENSION = "asset";
         private const int STARTING_ASCII_LETTER_NUMBER = 97;
         private const int LETTERS_IN_ALPHABET = 26;
         
         [MenuItem("Tools/Generate Words Lists")]
         static void GenerateWordsLists()
         {
-            var path = GetPathToFile();
-            var words = File.ReadAllLines(path);
-            var wordsListSOs = GetWordsListSOs();
-            ClearWordsListSOs(wordsListSOs);
+            var wordsArray = GetWordsArray();
+            var wordsListSOs = GetClearedWordsListSOs();
             InitLetters(wordsListSOs[0]);
 
-            foreach (var word in words)
+            foreach (var word in wordsArray)
             {
                 var storageNumber = word.Length - 1;
                 if(storageNumber <= 0) continue;
@@ -39,52 +37,43 @@ namespace _Assets.Scripts.WordsList
             {
                 var letter = (char)(STARTING_ASCII_LETTER_NUMBER + i);
                 wordsListSO.words.Add(letter+"");
-                Debug.Log(letter);
-            }
-        }
-
-        static void ClearWordsListSOs(List<WordsListSO> wordsListSOs)
-        {
-            foreach (var wordsListSO in wordsListSOs)
-            {
-                wordsListSO.words.Clear();
             }
         }
         
-        static List<WordsListSO> GetWordsListSOs()
+        static List<WordsListSO> GetClearedWordsListSOs()
         {
             var wordsList = new List<WordsListSO>();
 
-            var guids = AssetDatabase.FindAssets(WORDS_LIST_SO_TYPE);
-            foreach (var guid in guids)
+            var paths = GetPathsToFiles(WORDS_LIST_SO_NAME, WORDS_LIST_SO_TYPE, WORDS_LIST_SO_EXTENSION);
+            foreach (var path in paths)
             {
-                var assetPath = AssetDatabase.GUIDToAssetPath(guid);
-                var asset = AssetDatabase.LoadAssetAtPath<WordsListSO>(assetPath);
+                var asset = AssetDatabase.LoadAssetAtPath<WordsListSO>(path);
+                asset.words.Clear();
                 wordsList.Add(asset);
             }
             
             return wordsList;
         }
 
-        static string GetPathToFile()
+        static string[] GetWordsArray()
         {
-            var path = "";
-            var guids = AssetDatabase.FindAssets($"{TXT_FILE_NAME} t:TextAsset");
-            
+            var path = GetPathsToFiles(WORDS_TXT_FILE_NAME, WORDS_TXT_FILE_TYPE, WORDS_TXT_FILE_EXTENSION)[0];
+            return File.ReadAllLines(path);
+        }
+        
+        static List<string> GetPathsToFiles(string fileName, string fileType, string fileExtension)
+        {
+            var paths = new List<string>();
+            var guids = AssetDatabase.FindAssets($"{fileName} {fileType}");
             foreach (var guid in guids)
             {
                 var assetPath = AssetDatabase.GUIDToAssetPath(guid);
-                if (!assetPath.EndsWith($"{TXT_FILE_NAME}.txt")) continue;
+                if (!assetPath.EndsWith($"{fileName}.{fileExtension}")) continue;
                 
-                if (!String.IsNullOrEmpty(path))
-                {
-                    Debug.LogError($"Duplicated file found at: \n {path} \n and \n {assetPath}");
-                }
-                
-                path = assetPath;
+                paths.Add(assetPath);
             }
             
-            return path;
+            return paths;
         }
     }
 }
