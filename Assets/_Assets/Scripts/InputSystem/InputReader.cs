@@ -12,7 +12,5 @@ namespace _Assets.Scripts.InputSystem
                 Debug.Log(input);
             }
         }
-
-    
     }
 }
