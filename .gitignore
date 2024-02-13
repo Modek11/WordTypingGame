@@ -99,11 +99,6 @@ crashlytics-build.properties
 .vs/
 [Bb]in/
 [Oo]bj/
-_UpgradeReport_Files/
-![Pp]ackages/
-[Pp]ackages/*
-![Pp]ackages/UniEQS
-![Pp]ackages/UniEQS.ThirdParty
 
 Thumbs.db
 Desktop.ini
