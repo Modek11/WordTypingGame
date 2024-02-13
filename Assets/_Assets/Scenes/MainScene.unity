@@ -4653,6 +4653,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 463810424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1485772932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1485772933}
+  - component: {fileID: 1485772934}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1485772933
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485772932}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1485772934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485772932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1d48b500e8fd840aaf34d77a4a323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 3781661182402498994, guid: 45acb92dd651744419563111e48b8002, type: 3}
+  _wordsListSOs:
+  - {fileID: 11400000, guid: 9267d6cb5dce8164eb07e77f0d753a38, type: 2}
+  - {fileID: 11400000, guid: 691668dc581b0ba47945be9adc0b58c8, type: 2}
+  - {fileID: 11400000, guid: 372e0ffaa04ed0948874c513827d2439, type: 2}
+  - {fileID: 11400000, guid: d29615e81fe87c541804b4357c382d5c, type: 2}
+  - {fileID: 11400000, guid: fff5228ac87998f44b58dc35cc79480a, type: 2}
+  - {fileID: 11400000, guid: bb2e0f643509fc84b839a522554a1bc4, type: 2}
+  - {fileID: 11400000, guid: 7aef70cc200d5034b8c284f00bd97753, type: 2}
+  - {fileID: 11400000, guid: c708547da023f4d4f8bc6df75eb3040b, type: 2}
+  - {fileID: 11400000, guid: 10866b45b87b75244b9d4601185b6654, type: 2}
+  - {fileID: 11400000, guid: d31004bdda8a17c46ae97c4ec38c504d, type: 2}
+  - {fileID: 11400000, guid: 47bec2522f07ca844a0ae7e5ca3fcc06, type: 2}
+  - {fileID: 11400000, guid: 132385be20b0ccb498d83bd0ced2b275, type: 2}
+  - {fileID: 11400000, guid: e927d637f4fcc2a42afa1d1f6e5ad635, type: 2}
+  - {fileID: 11400000, guid: a08675b2d04d12b4c8f49fdc78d6f142, type: 2}
+  - {fileID: 11400000, guid: ada695ce80c700949abd9e13c6ad6829, type: 2}
 --- !u!1 &1587446038
 GameObject:
   m_ObjectHideFlags: 0
@@ -6628,3 +6689,4 @@ SceneRoots:
   - {fileID: 22742782}
   - {fileID: 515114719}
   - {fileID: 2103735679}
+  - {fileID: 1485772933}

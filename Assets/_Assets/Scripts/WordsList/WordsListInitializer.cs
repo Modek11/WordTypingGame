@@ -21,7 +21,8 @@ namespace _Assets.Scripts.WordsList
             var wordsArray = GetWordsArray();
             var wordsListSOs = GetClearedWordsListSOs();
             InitLetters(wordsListSOs[0]);
-
+            
+            //TODO: delete and create other SOs
             foreach (var word in wordsArray)
             {
                 var storageNumber = word.Length - 1;
