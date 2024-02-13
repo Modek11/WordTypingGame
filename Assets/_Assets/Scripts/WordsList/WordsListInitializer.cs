@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using _Assets.Scripts.ScriptableObjectsScripts;
 using UnityEditor;
 
 namespace _Assets.Scripts.WordsList
@@ -31,23 +30,23 @@ namespace _Assets.Scripts.WordsList
             }
         }
 
-        static void InitLetters(WordsListSO wordsListSO)
+        static void InitLetters(WordsListSo wordsListSo)
         {
             for (int i = 0; i < LETTERS_IN_ALPHABET; i++)
             {
                 var letter = (char)(STARTING_ASCII_LETTER_NUMBER + i);
-                wordsListSO.words.Add(letter+"");
+                wordsListSo.words.Add(letter+"");
             }
         }
         
-        static List<WordsListSO> GetClearedWordsListSOs()
+        static List<WordsListSo> GetClearedWordsListSOs()
         {
-            var wordsList = new List<WordsListSO>();
+            var wordsList = new List<WordsListSo>();
 
             var paths = GetPathsToFiles(WORDS_LIST_SO_NAME, WORDS_LIST_SO_TYPE, WORDS_LIST_SO_EXTENSION);
             foreach (var path in paths)
             {
-                var asset = AssetDatabase.LoadAssetAtPath<WordsListSO>(path);
+                var asset = AssetDatabase.LoadAssetAtPath<WordsListSo>(path);
                 asset.words.Clear();
                 wordsList.Add(asset);
             }

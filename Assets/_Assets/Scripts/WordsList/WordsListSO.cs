@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Assets.Scripts.ScriptableObjectsScripts
+namespace _Assets.Scripts.WordsList
 {
     [CreateAssetMenu(fileName = "WordsList", menuName = "ScriptableObjects/WordsList")]
-    public class WordsListSO : ScriptableObject
+    public class WordsListSo : ScriptableObject
     {
         public List<string> words;
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Assets.Scripts._Patterns
+namespace _Assets.Scripts.Core
 {
 	/// <summary>
 	/// MONOBEHAVIOR PSEUDO SINGLETON ABSTRACT CLASS

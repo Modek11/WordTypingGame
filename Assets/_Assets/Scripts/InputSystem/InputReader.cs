@@ -1,4 +1,4 @@
-using _Assets.Scripts._Patterns;
+using _Assets.Scripts.Core;
 using UnityEngine;
 
 namespace _Assets.Scripts.InputSystem
