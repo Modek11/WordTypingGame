@@ -64,7 +64,7 @@ MonoBehaviour:
   _textMeshPro: {fileID: 7692123648469621722}
   _spriteRenderer: {fileID: 244537158213518377}
   _paddingX: 2
-  _paddingY: 0
+  _paddingY: 1
 --- !u!1 &5877823528632324224
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -712300738839442941, guid: d669e887f67cefa4f8870e278c297b14, type: 2}
+  - {fileID: 2173365859579867685, guid: 6e4f048976f769548b703194d6b8fad3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,8 +166,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: textext
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d669e887f67cefa4f8870e278c297b14, type: 2}
-  m_sharedMaterial: {fileID: -712300738839442941, guid: d669e887f67cefa4f8870e278c297b14, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6e4f048976f769548b703194d6b8fad3, type: 2}
+  m_sharedMaterial: {fileID: 2173365859579867685, guid: 6e4f048976f769548b703194d6b8fad3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -314,7 +314,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 13.93, y: 3.3}
+  m_Size: {x: 28.72, y: 4.6099997}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

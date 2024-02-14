@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using _Assets.Scripts.WordsList;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _Assets.Scripts.Enemies
@@ -23,16 +21,19 @@ namespace _Assets.Scripts.Enemies
             while (true)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
+                
+                var storages = _wordsListSo.WordsLists;
+                var whichSo = Random.Range(0, storages.Count);
+                var list = storages[whichSo].words;
+                var whichWord = Random.Range(0, list.Count);
+                var word = list[whichWord];
 
-                var whichSO = Random.Range(0, 8);
-                var list = _wordsListSo.WordsLists[whichSO].words;
-                var whichword = Random.Range(0, list.Count);
-                var word = list[whichword];
-
-                var enemyGO = Instantiate(_enemyPrefab);
-                var component = enemyGO.GetComponent<Enemy>();
-                enemyGO.name = word;
+                var enemyGo = Instantiate(_enemyPrefab);
+                var component = enemyGo.GetComponent<Enemy>();
+                enemyGo.name = word;
                 component.Word = word;
+                
+                Destroy(enemyGo, 1);
             }
         }
     }
