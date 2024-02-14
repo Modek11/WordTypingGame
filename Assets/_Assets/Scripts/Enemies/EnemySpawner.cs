@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Assets.Scripts.WordsList;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _Assets.Scripts.Enemies
@@ -10,7 +11,7 @@ namespace _Assets.Scripts.Enemies
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private GameObject _enemyPrefab;
-        [SerializeField] private List<WordsListSo> _wordsListSOs;
+        [SerializeField] private WordsListSo _wordsListSo;
         void Start()
         {
             SpawnNextEnemy();
@@ -24,7 +25,7 @@ namespace _Assets.Scripts.Enemies
                 await UniTask.Delay(TimeSpan.FromSeconds(1));
 
                 var whichSO = Random.Range(0, 8);
-                var list = _wordsListSOs[whichSO].words;
+                var list = _wordsListSo.WordsLists[whichSO].words;
                 var whichword = Random.Range(0, list.Count);
                 var word = list[whichword];
 

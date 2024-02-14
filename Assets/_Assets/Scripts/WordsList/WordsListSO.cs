@@ -6,6 +6,6 @@ namespace _Assets.Scripts.WordsList
     [CreateAssetMenu(fileName = "WordsList", menuName = "ScriptableObjects/WordsList")]
     public class WordsListSo : ScriptableObject
     {
-        public List<string> words;
+        public List<WordsListType> WordsLists;
     }
 }

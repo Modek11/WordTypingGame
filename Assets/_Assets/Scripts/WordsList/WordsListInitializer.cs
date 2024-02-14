@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEditor;
+using UnityEngine;
 
 namespace _Assets.Scripts.WordsList
 {
@@ -9,7 +11,7 @@ namespace _Assets.Scripts.WordsList
         private const string WORDS_TXT_FILE_NAME = "WordsList";
         private const string WORDS_TXT_FILE_TYPE = "t:TextAsset";
         private const string WORDS_TXT_FILE_EXTENSION = "txt";
-        private const string WORDS_LIST_SO_NAME = "letters";
+        private const string WORDS_LIST_SO_NAME = "WordsListSO";
         private const string WORDS_LIST_SO_TYPE = "t:WordsListSO";
         private const string WORDS_LIST_SO_EXTENSION = "asset";
         private const int STARTING_ASCII_LETTER_NUMBER = 97;
@@ -19,49 +21,52 @@ namespace _Assets.Scripts.WordsList
         static void GenerateWordsLists()
         {
             var wordsArray = GetWordsArray();
-            var wordsListSOs = GetClearedWordsListSOs();
-            InitLetters(wordsListSOs[0]);
+            var wordsListSo = GetWordsListSo();
+            wordsListSo.WordsLists.Clear();
+            InitLettersWordsListSo(wordsListSo);
             
-            //TODO: delete and create other SOs
             foreach (var word in wordsArray)
             {
                 var storageNumber = word.Length - 1;
-                if(storageNumber <= 0) continue;
-                wordsListSOs[storageNumber].words.Add(word);
+                if(storageNumber <= 0)
+                {
+                    continue;
+                }
+                
+                while (wordsListSo.WordsLists.Count <= storageNumber) 
+                {
+                    wordsListSo.WordsLists.Add(new WordsListType());
+                }
+                
+                wordsListSo.WordsLists[storageNumber].words.Add(word);
             }
         }
 
-        static void InitLetters(WordsListSo wordsListSo)
+        static void InitLettersWordsListSo(WordsListSo wordsListSo)
         {
+            wordsListSo.WordsLists.Add(new WordsListType());
             for (int i = 0; i < LETTERS_IN_ALPHABET; i++)
             {
                 var letter = (char)(STARTING_ASCII_LETTER_NUMBER + i);
-                wordsListSo.words.Add(letter+"");
+                wordsListSo.WordsLists[0].words.Add(letter+"");
             }
         }
         
-        static List<WordsListSo> GetClearedWordsListSOs()
+        static WordsListSo GetWordsListSo()
         {
-            var wordsList = new List<WordsListSo>();
-
-            var paths = GetPathsToFiles(WORDS_LIST_SO_NAME, WORDS_LIST_SO_TYPE, WORDS_LIST_SO_EXTENSION);
-            foreach (var path in paths)
-            {
-                var asset = AssetDatabase.LoadAssetAtPath<WordsListSo>(path);
-                asset.words.Clear();
-                wordsList.Add(asset);
-            }
-            
-            return wordsList;
+            var paths = GetPathsToFiles(WORDS_LIST_SO_NAME, WORDS_LIST_SO_TYPE, WORDS_LIST_SO_EXTENSION, true);
+            var path = paths[0];
+            return AssetDatabase.LoadAssetAtPath<WordsListSo>(path);
         }
 
         static string[] GetWordsArray()
         {
-            var path = GetPathsToFiles(WORDS_TXT_FILE_NAME, WORDS_TXT_FILE_TYPE, WORDS_TXT_FILE_EXTENSION)[0];
+            var paths = GetPathsToFiles(WORDS_TXT_FILE_NAME, WORDS_TXT_FILE_TYPE, WORDS_TXT_FILE_EXTENSION, true);
+            var path = paths[0];
             return File.ReadAllLines(path);
         }
         
-        static List<string> GetPathsToFiles(string fileName, string fileType, string fileExtension)
+        static List<string> GetPathsToFiles(string fileName, string fileType, string fileExtension, bool shouldReturnSinglePath)
         {
             var paths = new List<string>();
             var guids = AssetDatabase.FindAssets($"{fileName} {fileType}");
@@ -71,6 +76,18 @@ namespace _Assets.Scripts.WordsList
                 if (!assetPath.EndsWith($"{fileName}.{fileExtension}")) continue;
                 
                 paths.Add(assetPath);
+            }
+
+            if (paths.Count > 1 && shouldReturnSinglePath)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append($"Found more than one asset of name: {fileName}.{fileExtension}. Files paths:");
+                foreach (var path in paths)
+                {
+                    sb.Append($"\n\t{path}");
+                }
+                
+                Debug.LogError(sb.ToString());
             }
             
             return paths;
