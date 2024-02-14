@@ -4699,6 +4699,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 3781661182402498994, guid: 45acb92dd651744419563111e48b8002, type: 3}
   _wordsListSo: {fileID: 11400000, guid: 9267d6cb5dce8164eb07e77f0d753a38, type: 2}
+  _timeToSpawnEnemy: 1
+  _heightToSpawn: 52
+  _maxWidthToSpawn: 20
 --- !u!1 &1587446038
 GameObject:
   m_ObjectHideFlags: 0
@@ -6300,6 +6303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea41c9d384fe3744b0c404aa7188d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemySpawner: {fileID: 1485772934}
 --- !u!4 &2103735679
 Transform:
   m_ObjectHideFlags: 0
