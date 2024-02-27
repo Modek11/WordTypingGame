@@ -8,6 +8,7 @@ Welcome to Word Typing Game, a clone of the popular game "ZType". In this game, 
 
 ## Features
 
+- **Developer Tools:** A tool is provided for developers to easily import a word database, making it accessible in the game.
 - **Endless Gameplay:** The game offers endless waves of words, providing a challenging and immersive experience.
 - **Scoring System:** Keep track of your performance with the built-in scoring system.
 - **Responsive Design:** Play the game on various devices with responsive design support.
